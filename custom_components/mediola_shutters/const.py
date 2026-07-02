@@ -23,6 +23,7 @@ ELERO_STATE_CLOSED = "1002"  # Fully closed
 ELERO_STATE_INTERMEDIATE = "100D"  # Somewhere in between
 ELERO_STATE_MOVING_UP = "100A"  # Moving upwards
 ELERO_STATE_MOVING_DOWN = "100B"  # Moving downwards
+ELERO_STATE_UNKNOWN = "0000"  # No status reported yet by the device
 
 # Elero commands
 ELERO_CMD_UP = "08"  # Open/Up

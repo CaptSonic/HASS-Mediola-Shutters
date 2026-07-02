@@ -15,12 +15,17 @@ from .const import (
     ELERO_STATE_INTERMEDIATE,
     ELERO_STATE_MOVING_UP,
     ELERO_STATE_MOVING_DOWN,
+    ELERO_STATE_UNKNOWN,
     ELERO_CMD_UP,
     ELERO_CMD_DOWN,
     ELERO_CMD_STOP,
 )
 
 _LOGGER = logging.getLogger(__name__)
+
+# Elero states already logged as unrecognized, so we warn once per value
+# instead of on every property access (HA reads these very frequently).
+_LOGGED_UNKNOWN_ELERO_STATES: set = set()
 
 
 class MediolaAPI:
@@ -362,8 +367,12 @@ class MediolaAPI:
             return 50  # Somewhere in between
         elif state in [ELERO_STATE_MOVING_UP, ELERO_STATE_MOVING_DOWN]:
             return None  # Moving, position unknown
+        elif state == ELERO_STATE_UNKNOWN:
+            return None  # Device hasn't reported a real status yet
         else:
-            _LOGGER.warning("Unknown Elero state: %s", state)
+            if state not in _LOGGED_UNKNOWN_ELERO_STATES:
+                _LOGGED_UNKNOWN_ELERO_STATES.add(state)
+                _LOGGER.warning("Unknown Elero state: %s", state)
             return None
 
     def parse_position(self, device_type: str, state: str) -> Optional[int]:
