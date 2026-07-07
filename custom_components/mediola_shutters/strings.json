@@ -13,6 +13,19 @@
         "data_description": {
           "scan_interval": "How often to poll the gateway for status updates (5-300 seconds, default: 15)"
         }
+      },
+      "reconfigure": {
+        "title": "Reconfigure Mediola Gateway",
+        "description": "Update the connection details for your Mediola Gateway",
+        "data": {
+          "host": "IP Address",
+          "username": "Username",
+          "password": "Password",
+          "scan_interval": "Update interval (seconds)"
+        },
+        "data_description": {
+          "scan_interval": "How often to poll the gateway for status updates (5-300 seconds, default: 15)"
+        }
       }
     },
     "error": {
@@ -20,7 +33,8 @@
       "unknown": "Unexpected error occurred. Please try again."
     },
     "abort": {
-      "already_configured": "This Mediola Gateway is already configured."
+      "already_configured": "This Mediola Gateway is already configured.",
+      "reconfigure_successful": "The Mediola Gateway configuration has been updated."
     }
   },
   "options": {

@@ -13,6 +13,19 @@
         "data_description": {
           "scan_interval": "Wie oft das Gateway für Statusaktualisierungen abgefragt wird (5-300 Sekunden, Standard: 15)"
         }
+      },
+      "reconfigure": {
+        "title": "Mediola Gateway neu konfigurieren",
+        "description": "Aktualisieren Sie die Verbindungsdaten für Ihr Mediola Gateway",
+        "data": {
+          "host": "IP-Adresse",
+          "username": "Benutzername",
+          "password": "Passwort",
+          "scan_interval": "Aktualisierungsintervall (Sekunden)"
+        },
+        "data_description": {
+          "scan_interval": "Wie oft das Gateway für Statusaktualisierungen abgefragt wird (5-300 Sekunden, Standard: 15)"
+        }
       }
     },
     "error": {
@@ -20,7 +33,8 @@
       "unknown": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuchen Sie es erneut."
     },
     "abort": {
-      "already_configured": "Dieses Mediola Gateway ist bereits konfiguriert."
+      "already_configured": "Dieses Mediola Gateway ist bereits konfiguriert.",
+      "reconfigure_successful": "Die Konfiguration des Mediola Gateways wurde aktualisiert."
     }
   },
   "options": {
