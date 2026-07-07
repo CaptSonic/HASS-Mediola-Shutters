@@ -57,12 +57,27 @@ In der Antwort könnt ihr hinter "Type" das Herstellerkürzel sehen. Dieses muss
    - **Aktualisierungsintervall**: Wie oft der Status abgefragt wird (5-300 Sekunden, Standard: 15)
 5. Klicken Sie auf **Absenden**
 
+### Einstellungen über die UI ändern
+
+Sie können die Verbindungsdaten und das Aktualisierungsintervall jederzeit über die Home-Assistant-UI anpassen:
+1. Gehe zu **Einstellungen** → **Geräte & Dienste**
+2. Finde **Mediola Shutters**
+3. Öffne das Menü der Integration
+4. Wähle **Neu konfigurieren**
+5. Ändere bei Bedarf:
+   - **IP-Adresse**
+   - **Benutzername**
+   - **Passwort**
+   - **Aktualisierungsintervall**
+6. Speichere die Änderungen
+7. Die Integration wird automatisch neu geladen
+
 ### Aktualisierungsintervall ändern
 
 Sie können das Aktualisierungsintervall jederzeit ändern:
 1. Gehe zu **Einstellungen** → **Geräte & Dienste**
 2. Finde "Mediola Shutters"
-3. Klicke auf **Konfigurieren** (⚙️ Symbol)
+3. Klicke auf **Konfigurieren** (⚙️ Symbol) oder nutze **Neu konfigurieren**
 4. Ändere das Aktualisierungsintervall
 5. Die Integration wird automatisch neu geladen
 
@@ -300,6 +315,10 @@ Die Integration kommuniziert über HTTP mit dem Mediola Gateway:
 - Konfigurierbares Aktualisierungsintervall (Standard: 15 Sekunden)
 - 7 Services für erweiterte Steuerung
 - Unterstützung für eigenes Icon
+
+### Version 1.0.2
+- Reconfigure-Flow für Änderungen von IP-Adresse, Benutzername und Passwort über die UI
+- Aktualisierte Übersetzungen und Dokumentation für die UI-Neukonfiguration
 
 ## 🤝 Beitragen
 
