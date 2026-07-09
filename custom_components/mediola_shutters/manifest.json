@@ -8,5 +8,5 @@
   "documentation": "https://github.com/yourusername/mediola_shutters",
   "iot_class": "local_polling",
   "requirements": ["requests>=2.31.0"],
-  "version": "1.0.2"
+  "version": "1.0.3"
 }

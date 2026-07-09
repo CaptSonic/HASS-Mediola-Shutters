@@ -320,6 +320,10 @@ Die Integration kommuniziert über HTTP mit dem Mediola Gateway:
 - Reconfigure-Flow für Änderungen von IP-Adresse, Benutzername und Passwort über die UI
 - Aktualisierte Übersetzungen und Dokumentation für die UI-Neukonfiguration
 
+### Version 1.0.3
+- Fehlende `requests`-Abhängigkeit im Manifest ergänzt, damit der Config Flow korrekt geladen wird
+- Python-Cache-Dateien aus dem Repository-Bestand für sauberere Git-/HACS-Updates ausgeschlossen
+
 ## 🤝 Beitragen
 
 Fehler gefunden oder Verbesserungsvorschläge? Erstellen Sie ein Issue oder Pull Request auf GitHub!
