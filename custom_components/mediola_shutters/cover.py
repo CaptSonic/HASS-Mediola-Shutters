@@ -107,6 +107,18 @@ class MediolaCover(CoordinatorEntity, CoverEntity):
         return None
 
     @property
+    def extra_state_attributes(self) -> dict[str, Any]:
+        """Expose closing percentage without changing HA cover semantics."""
+        position = self.current_cover_position
+        closing_position = None if position is None else 100 - position
+        return {
+            "closing_percentage": closing_position,
+            "closing_percentage_display": (
+                None if closing_position is None else f"{closing_position} %"
+            ),
+        }
+
+    @property
     def is_closed(self) -> Optional[bool]:
         """Return if the cover is closed."""
         position = self.current_cover_position

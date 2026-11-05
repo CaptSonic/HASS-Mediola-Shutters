@@ -176,6 +176,23 @@ class CompatibilityTests(unittest.IsolatedAsyncioTestCase):
                 self.assertEqual(info.via_device_id, "gateway-id")
                 self.assertEqual((info.name, info.manufacturer, info.model), ("Shutter 01", "WIR", "WR Shutter"))
 
+    async def test_closing_percentage_does_not_change_cover_state(self):
+        attributes = load_definition(
+            "cover.py", "extra_state_attributes", {}, parent="MediolaCover"
+        )
+        closed = load_definition("cover.py", "is_closed", {}, parent="MediolaCover")
+        for position, expected, is_closed in [
+            (100, 0, False), (0, 100, True), (75, 25, False), (None, None, None),
+        ]:
+            with self.subTest(position=position):
+                entity = SimpleNamespace(current_cover_position=position)
+                self.assertEqual(attributes.fget(entity), {
+                    "closing_percentage": expected,
+                    "closing_percentage_display": None if expected is None else f"{expected} %",
+                })
+                self.assertEqual(closed.fget(entity), is_closed)
+                self.assertEqual(entity.current_cover_position, position)
+
     async def test_cover_commands_and_position_conversion(self):
         api = SimpleNamespace(**{name: Mock(return_value=True) for name in [
             "open_shutter", "close_shutter", "stop_shutter", "set_shutter_position"

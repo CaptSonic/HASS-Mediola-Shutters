@@ -104,6 +104,31 @@ Für jedes Rollo werden folgende Entitäten erstellt:
   - `on` = Rollo ist offen
   - `off` = Rollo ist geschlossen
 
+### Rollladenkarte: 100 % geschlossen, 0 % geöffnet
+
+Die Cover-Entität stellt zusätzlich `closing_percentage` (Zahl) und
+`closing_percentage_display` (Text mit Prozentzeichen) bereit. Diese Werte zeigen
+den Schließungsgrad: **0 % = ganz geöffnet, 100 % = geschlossen**. Bei unbekannter
+Position sind die Attribute `null`.
+
+Für eine Kachelkarte mit bisherigem Öffnungsstatus und umgekehrter Prozentanzeige:
+
+```yaml
+type: tile
+entity: cover.shutter_01
+state_content:
+  - state
+  - closing_percentage_display
+features:
+  - type: cover-open-close
+```
+
+Die Entity-ID im Beispiel durch die eigene Cover-Entität ersetzen. Bestehende
+Karten müssen entsprechend angepasst werden; die Integration ändert kein Dashboard
+automatisch. Die Standard-Detailansicht und ein optionaler Cover-Positionsregler
+behalten die Home-Assistant-Skala **0 = geschlossen, 100 = offen**. Öffnen,
+Schließen, Stoppen, Positionsbefehle und der Öffnungsstatus bleiben unverändert.
+
 ## 🔧 Services
 
 Die Integration stellt folgende Services bereit:
@@ -333,6 +358,10 @@ Die Integration kommuniziert über HTTP mit dem Mediola Gateway:
 ### Version 1.0.5
 - Versionsanhebung und GitHub-Release für die Aktualisierung über HACS
 - Enthält die Kompatibilitätsanpassungen aus Version 1.0.4
+
+### Version 1.0.6
+- Separate Anzeige des Schließungsgrades auf der Cover-Entität ergänzt (100 % geschlossen, 0 % geöffnet), ohne Status und Steuerung zu verändern
+- Beispiel einer Kachelkarte mit Öffnungsstatus und Schließungsgrad ergänzt
 
 ## 🤝 Beitragen
 
