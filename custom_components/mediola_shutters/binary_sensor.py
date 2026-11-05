@@ -8,6 +8,7 @@ from homeassistant.components.binary_sensor import (
 )
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant
+from homeassistant.helpers.device_registry import DeviceInfo
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
@@ -56,18 +57,18 @@ class MediolaOpeningSensor(CoordinatorEntity, BinarySensorEntity):
         self._attr_name = "Opening"
 
     @property
-    def device_info(self):
+    def device_info(self) -> DeviceInfo:
         """Return device information about this shutter."""
         manufacturer = self.coordinator.api.get_manufacturer(self._device_type)
         model = f"{self._device_type} Shutter"
         
-        return {
-            "identifiers": {(DOMAIN, f"{self._entry.entry_id}_{self._sid}")},
-            "name": f"Shutter {self._sid}",
-            "manufacturer": manufacturer,
-            "model": model,
-            "via_device": (DOMAIN, self._entry.entry_id),
-        }
+        return DeviceInfo(
+            identifiers={(DOMAIN, f"{self._entry.entry_id}_{self._sid}")},
+            name=f"Shutter {self._sid}",
+            manufacturer=manufacturer,
+            model=model,
+            via_device_id=self.coordinator.gateway_device_id,
+        )
 
     @property
     def is_on(self) -> Optional[bool]:

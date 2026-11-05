@@ -147,15 +147,11 @@ class MediolaConfigFlow(config_entries.ConfigFlow, domain=DOMAIN):
         config_entry: config_entries.ConfigEntry,
     ) -> "MediolaOptionsFlowHandler":
         """Get the options flow for this handler."""
-        return MediolaOptionsFlowHandler(config_entry)
+        return MediolaOptionsFlowHandler()
 
 
 class MediolaOptionsFlowHandler(config_entries.OptionsFlow):
     """Handle options flow for Mediola Shutters integration."""
-
-    def __init__(self, config_entry: config_entries.ConfigEntry) -> None:
-        """Initialize options flow."""
-        self.config_entry = config_entry
 
     async def async_step_init(
         self, user_input: Optional[Dict[str, Any]] = None

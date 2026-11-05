@@ -57,7 +57,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     api = MediolaAPI(host, username, password)
 
     # Create coordinator for data updates
-    coordinator = MediolaDataUpdateCoordinator(hass, api, scan_interval)
+    coordinator = MediolaDataUpdateCoordinator(hass, entry, api, scan_interval)
 
     # Fetch initial data
     await coordinator.async_config_entry_first_refresh()
@@ -68,13 +68,14 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     # Create gateway device
     device_registry = dr.async_get(hass)
-    device_registry.async_get_or_create(
+    gateway_device = device_registry.async_get_or_create(
         config_entry_id=entry.entry_id,
         identifiers={(DOMAIN, entry.entry_id)},
         manufacturer="Mediola",
         name=f"Mediola Gateway ({host})",
         model="Gateway",
     )
+    coordinator.gateway_device_id = gateway_device.id
 
     # Forward setup to platforms
     await hass.config_entries.async_forward_entry_setups(entry, PLATFORMS)
@@ -212,15 +213,19 @@ async def async_setup_services(hass: HomeAssistant, entry_id: str) -> None:
 class MediolaDataUpdateCoordinator(DataUpdateCoordinator):
     """Class to manage fetching Mediola data from the gateway."""
 
-    def __init__(self, hass: HomeAssistant, api: MediolaAPI, scan_interval: int) -> None:
+    def __init__(
+        self, hass: HomeAssistant, entry: ConfigEntry, api: MediolaAPI, scan_interval: int
+    ) -> None:
         """Initialize the coordinator."""
         super().__init__(
             hass,
             _LOGGER,
+            config_entry=entry,
             name=DOMAIN,
             update_interval=timedelta(seconds=scan_interval),
         )
         self.api = api
+        self.gateway_device_id: str | None = None
 
     async def _async_update_data(self):
         """Fetch data from Mediola gateway."""

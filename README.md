@@ -324,6 +324,12 @@ Die Integration kommuniziert über HTTP mit dem Mediola Gateway:
 - Fehlende `requests`-Abhängigkeit im Manifest ergänzt, damit der Config Flow korrekt geladen wird
 - Python-Cache-Dateien aus dem Repository-Bestand für sauberere Git-/HACS-Updates ausgeschlossen
 
+### Version 1.0.4
+- Options-Flow korrigiert: Der Konfigurationseintrag wird von Home Assistant bereitgestellt und nicht mehr auf die schreibgeschützte Eigenschaft gesetzt
+- Geräteinformationen auf `DeviceInfo` und `via_device_id` umgestellt; bestehende Geräte- und Entitätskennungen bleiben unverändert
+- Konfigurationseintrag explizit an den Update-Coordinator übergeben
+- Isolierte Regressionstests für die Kompatibilitätsanpassungen ergänzt; ein vollständiger Laufzeit- und Gateway-Test unter Home Assistant 2026.11 steht noch aus
+
 ## 🤝 Beitragen
 
 Fehler gefunden oder Verbesserungsvorschläge? Erstellen Sie ein Issue oder Pull Request auf GitHub!
