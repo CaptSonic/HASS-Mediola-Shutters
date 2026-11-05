@@ -330,6 +330,10 @@ Die Integration kommuniziert über HTTP mit dem Mediola Gateway:
 - Konfigurationseintrag explizit an den Update-Coordinator übergeben
 - Isolierte Regressionstests für die Kompatibilitätsanpassungen ergänzt; ein vollständiger Laufzeit- und Gateway-Test unter Home Assistant 2026.11 steht noch aus
 
+### Version 1.0.5
+- Versionsanhebung und GitHub-Release für die Aktualisierung über HACS
+- Enthält die Kompatibilitätsanpassungen aus Version 1.0.4
+
 ## 🤝 Beitragen
 
 Fehler gefunden oder Verbesserungsvorschläge? Erstellen Sie ein Issue oder Pull Request auf GitHub!
